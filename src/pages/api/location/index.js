@@ -112,7 +112,8 @@ export default async function handler(req, res) {
     res.status(200).json({ message: 'ok', length: data.rows.length, body: data.rows })
   } else if (req.method === 'POST') {
     const data = Object.values(req.body).join("', '")
-    const queryString = `insert into location values ('${data}')`
+    const queryString = `insert into public.location values ('${crypto.randomBytes(16).toString('hex')}', '${data}')`
+    console.log(queryString)
 
     try {
       await client.query(queryString)
