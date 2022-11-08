@@ -1,6 +1,6 @@
 import client from './../../../../Client';
 
-const tableName = 'public.location';
+const tableName = 'public.admin';
 
 export default async function handler(req, res) {
   const id = req.query.id;

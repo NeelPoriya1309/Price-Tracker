@@ -1,7 +1,7 @@
 import client from '../../../../Client';
 const crypto = require('crypto');
 
-const tableName = 'public.location';
+const tableName = 'public.image';
 
 export default async function handler(req, res) {
   if (req.method === 'GET') {
