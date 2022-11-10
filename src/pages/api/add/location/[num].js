@@ -104,16 +104,15 @@ const AddLocations = async (max) => {
 
   let queryPromises = queries.map((el) => client.query(el));
   return Promise.all(queryPromises);
-  console.log('Acutally Done');
 };
 
 export default async function handler(req, res) {
   const num = req.query.num;
 
   try {
-    await AddLocations(num);
+    const data = await AddLocations(num);
     console.log('Done');
-    res.status(200).json({ message: 'ok', body: 'Enteries inserted' });
+    res.status(200).json({ message: 'ok', body: data });
   } catch (err) {
     res.status(404).json({ message: 'some error occured', body: err });
   }

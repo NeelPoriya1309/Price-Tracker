@@ -10,6 +10,7 @@ export default async function handler(req, res) {
       .status(200)
       .json({ message: 'ok', length: data.rows.length, body: data.rows });
   } else if (req.method === 'POST') {
+    console.log(req.body);
     const data = Object.values(req.body).join("', '");
     const newId = crypto.randomBytes(16).toString('hex');
     const attributes = Object.keys(req.body).join(', ');

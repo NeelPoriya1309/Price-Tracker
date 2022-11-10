@@ -31,7 +31,7 @@ export default async function handler(req, res) {
             headers: {
               'Content-Type': 'application/json',
             },
-            body: JSON.stringify(req.body[key]),
+            body: JSON.stringify({ image_url: req.body[key] }),
           }
         );
 
