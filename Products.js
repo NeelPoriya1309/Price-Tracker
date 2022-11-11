@@ -135,52 +135,6 @@ module.exports = [
     image: 'https://m.media-amazon.com/images/I/71XmlboxNZL._SL1500_.jpg',
   },
   {
-    name: 'Oppo Reno8',
-    category: 'Smart Phone',
-    company: 'Oppo',
-    description:
-      '8 GB RAM | 128 GB ROM 16.33 cm (6.43 inch) Full HD Display 50MP + 8MP + 2MP | 32MP Front Camera 4500 mAh Lithium-ion Polymer Battery Mediatek Dimensity 1300 Processor',
-    base_price: 38999,
-    image: 'https://m.media-amazon.com/images/I/21hxtZkEe3L.jpg',
-  },
-  {
-    name: 'Oppo Reno7',
-    category: 'Smart Phone',
-    company: 'Oppo',
-    description:
-      '8 GB RAM | 256 GB ROM | Expandable Upto 1 TB. 16.33 cm (6.43 inch) Full HD Display. 64MP + 8MP + 2MP | 32MP Front Camera. 4500 mAh Lithium-ion Polymer Battery. Mediatek Dimensity 900 Processor',
-    base_price: 31999,
-    image: 'https://m.media-amazon.com/images/I/3124XfdLQNL.jpg',
-  },
-  {
-    name: 'Oppo Reno7 Pro',
-    category: 'Smart Phone',
-    company: 'Oppo',
-    base_price: 40999,
-    description:
-      '12 GB RAM | 256 GB ROM. 16.51 cm (6.5 inch) Full HD+ AMOLED Display. 50MP + 8MP + 2MP | 32MP Front Camera. 4500 mAh Lithium-ion Polymer Battery. MediaTek Dimensity 1200-Max Processor',
-    image: 'https://m.media-amazon.com/images/I/31Tah4TynYL.jpg',
-  },
-  {
-    name: 'Oppo Reno6',
-    category: 'Smart Phone',
-    company: 'Oppo',
-    base_price: 36999,
-    description:
-      'Product Type - Cellular Phone. Item Package Quantity - 1. Ram Size - 8 Gb. Storage - 128 Gb',
-    image: 'https://m.media-amazon.com/images/I/31764EhC7gL.jpg',
-  },
-  {
-    name: 'Oppo Reno6 Pro',
-    category: 'Smart Phone',
-    company: 'Oppo',
-    base_price: 46999,
-    image: 'https://m.media-amazon.com/images/I/61b-600rexL._SL1440_.jpg',
-    description:
-      '12 GB RAM | 256 GB ROM | Expandable Upto 2 TB. 16.64 cm (6.55 inch) Full HD+ Display. 64MP + 8MP + 2MP + 2MP | 32MP Front Camera. 4500 mAh Lithium-ion Polymer Battery. MediaTek Dimensity 1200 Processor. Display type: AMOLED.',
-  },
-
-  {
     name: 'Lenovo Legion 5',
     company: 'Lenovo',
     category: 'Laptop',
@@ -235,6 +189,15 @@ module.exports = [
     image: 'https://m.media-amazon.com/images/I/71f5Eu5lJSL._SL1500_.jpg',
   },
   {
+    name: 'Oppo Reno8',
+    category: 'Smart Phone',
+    company: 'Oppo',
+    description:
+      '8 GB RAM | 128 GB ROM 16.33 cm (6.43 inch) Full HD Display 50MP + 8MP + 2MP | 32MP Front Camera 4500 mAh Lithium-ion Polymer Battery Mediatek Dimensity 1300 Processor',
+    base_price: 38999,
+    image: 'https://m.media-amazon.com/images/I/21hxtZkEe3L.jpg',
+  },
+  {
     name: 'Apple MacBook Pro',
     company: 'Apple',
     category: 'Laptop',
@@ -263,15 +226,6 @@ module.exports = [
     image: 'https://m.media-amazon.com/images/I/61eDXs9QFNL._SL1500_.jpg',
   },
   {
-    name: 'OnePlus 9',
-    category: 'Smart Phone',
-    company: 'OnePlus',
-    description:
-      'Rear Quad Camera Co-Developed by Hasselblad, 48 MP Main camera, 50 MP Ultra Wide Angle Camera with Sensor size of 1/1.56, 8 MP Telephoto Lens, 2 MP Monochorme Lens,16 MP Front Camera. Qualcomm Snapdragon 888 Processor with Adreno 660 GPU. 6.7 Inches Fluid AMOLED Display with 120Hz refresh rate with Latest LTPO technology. OnePlus Oxygen OS based on Andriod 11. Comes with 4500 mAh Battery with 65W Wired Charging and 50W Wireless Charging capability',
-    base_price: 69999,
-    image: 'https://m.media-amazon.com/images/I/612ytK4luvL._SL1500_.jpg',
-  },
-  {
     name: 'OnePlus 8T',
     category: 'Smart Phone',
     company: 'OnePlus',
@@ -279,5 +233,50 @@ module.exports = [
       'This Renewed product is tested to work and look like new with minimal to no signs of wear & tear; the product comes with relevant accessories and is backed by a minimum six month seller warranty; box may be generic. Rear Quad Camera with 48 MP Sony IMX586 Sensor, 16 MP Ultra Wide Angle, 5 MP macro lens and 2 MP monochrome lens | Front Camera with 16 MP Sony IMX471 Sensor. 6.55 inch ( 16.63 centimeters) 120 Hz Fluid AMOLED Display with 2400 X 1080 Pixels resolution, 402 PPI density. 2.86 GHz Qualcomm Snapdragon 865 Octa-core Processor + Adreno 650 GPU ,Oxygen OS based on Android 11 Operating system. 12 GB RAM | 256 GB ROM;4500 mAH Lithium-ion battery with 65 W Warp charge',
     base_price: 44999,
     image: 'https://m.media-amazon.com/images/I/71m05O2uNdL._SL1500_.jpg',
+  },
+  {
+    name: 'Oppo Reno7',
+    category: 'Smart Phone',
+    company: 'Oppo',
+    description:
+      '8 GB RAM | 256 GB ROM | Expandable Upto 1 TB. 16.33 cm (6.43 inch) Full HD Display. 64MP + 8MP + 2MP | 32MP Front Camera. 4500 mAh Lithium-ion Polymer Battery. Mediatek Dimensity 900 Processor',
+    base_price: 31999,
+    image: 'https://m.media-amazon.com/images/I/3124XfdLQNL.jpg',
+  },
+  {
+    name: 'Oppo Reno7 Pro',
+    category: 'Smart Phone',
+    company: 'Oppo',
+    base_price: 40999,
+    description:
+      '12 GB RAM | 256 GB ROM. 16.51 cm (6.5 inch) Full HD+ AMOLED Display. 50MP + 8MP + 2MP | 32MP Front Camera. 4500 mAh Lithium-ion Polymer Battery. MediaTek Dimensity 1200-Max Processor',
+    image: 'https://m.media-amazon.com/images/I/31Tah4TynYL.jpg',
+  },
+  {
+    name: 'Oppo Reno6',
+    category: 'Smart Phone',
+    company: 'Oppo',
+    base_price: 36999,
+    description:
+      'Product Type - Cellular Phone. Item Package Quantity - 1. Ram Size - 8 Gb. Storage - 128 Gb',
+    image: 'https://m.media-amazon.com/images/I/31764EhC7gL.jpg',
+  },
+  {
+    name: 'Oppo Reno6 Pro',
+    category: 'Smart Phone',
+    company: 'Oppo',
+    base_price: 46999,
+    image: 'https://m.media-amazon.com/images/I/61b-600rexL._SL1440_.jpg',
+    description:
+      '12 GB RAM | 256 GB ROM | Expandable Upto 2 TB. 16.64 cm (6.55 inch) Full HD+ Display. 64MP + 8MP + 2MP + 2MP | 32MP Front Camera. 4500 mAh Lithium-ion Polymer Battery. MediaTek Dimensity 1200 Processor. Display type: AMOLED.',
+  },
+  {
+    name: 'OnePlus 9',
+    category: 'Smart Phone',
+    company: 'OnePlus',
+    description:
+      'Rear Quad Camera Co-Developed by Hasselblad, 48 MP Main camera, 50 MP Ultra Wide Angle Camera with Sensor size of 1/1.56, 8 MP Telephoto Lens, 2 MP Monochorme Lens,16 MP Front Camera. Qualcomm Snapdragon 888 Processor with Adreno 660 GPU. 6.7 Inches Fluid AMOLED Display with 120Hz refresh rate with Latest LTPO technology. OnePlus Oxygen OS based on Andriod 11. Comes with 4500 mAh Battery with 65W Wired Charging and 50W Wireless Charging capability',
+    base_price: 69999,
+    image: 'https://m.media-amazon.com/images/I/612ytK4luvL._SL1500_.jpg',
   },
 ];

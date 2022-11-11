@@ -14,7 +14,11 @@ export default async function handler(req, res) {
       values = '';
     Object.entries(req.body).map(([key, value]) => {
       attributes += `${key},`;
-      values += `'${value}',`;
+      let newValue = value;
+      if (typeof newValue === 'string') {
+        newValue = newValue.replaceAll(`'`, `''`);
+      }
+      values += `'${newValue}',`;
     });
 
     const queryString = `insert into ${tableName} (${attributes.slice(

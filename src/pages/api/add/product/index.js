@@ -13,7 +13,7 @@ const addProduct = async (product) => {
   let companyID;
 
   // console.log(companyCheckResult);
-  if (companyCheckResult.rows.length === 0) {
+  if (companyCheckResult.rowCount === 0) {
     companyID = crypto.randomBytes(16).toString('hex');
     const companyQuery = `INSERT INTO company VALUES ('${companyID}','${product.company}') RETURNING *`;
     const companyResult = await client.query(companyQuery);
@@ -30,7 +30,7 @@ const addProduct = async (product) => {
   let categoryID;
 
   // console.log(categoryCheckResult);
-  if (categoryCheckResult.rows.length === 0) {
+  if (categoryCheckResult.rowCount === 0) {
     categoryID = crypto.randomBytes(16).toString('hex');
     const categoryQuery = `INSERT INTO category VALUES ('${categoryID}','${product.category}') RETURNING *`;
     const categoryResult = await client.query(categoryQuery);
@@ -55,14 +55,13 @@ const addProduct = async (product) => {
     body: JSON.stringify(newProduct),
   });
 
-  return addRequest.json();
+  await addRequest.json();
+  return Promise.resolve();
 };
 
 export default async function handler(req, res) {
-  const queries = [];
   for (let i = 0; i < Products.length; i++) {
-    queries.push(addProduct(Products[i]));
+    await addProduct(Products[i]);
   }
-  await Promise.all(queries);
-  res.status(200).json({ message: 'ok' });
+  res.status(200).json({ message: `ok! Inserted ${Products.length} products` });
 }

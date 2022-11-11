@@ -5,14 +5,14 @@ const flatted = require('flatted');
 const fs = require('fs');
 
 export default async function handler(req, res) {
-  for (let i = 14; i < Products.length; ++i) {
+  for (let i = 30; i < 31; ++i) {
     const product = Products[i];
     const options = {
       method: 'GET',
       url: 'https://real-time-product-search.p.rapidapi.com/search',
-      params: { q: product.name, country: 'in', language: 'en' },
+      params: { q: product.name, country: 'us', language: 'en' },
       headers: {
-        'X-RapidAPI-Key': '0e89421852msh17a915d4502932ep1c0e48jsn9e48b15464c1',
+        'X-RapidAPI-Key': 'ed3221f39bmsh6dc0eb1757fb755p1d6f61jsn9d57cda06548',
         'X-RapidAPI-Host': 'real-time-product-search.p.rapidapi.com',
       },
     };

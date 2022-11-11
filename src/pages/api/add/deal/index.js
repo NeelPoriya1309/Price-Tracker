@@ -3,6 +3,8 @@ import fs from 'fs';
 import Products from 'Products';
 const flatted = require('flatted');
 
+let counter = 0;
+
 const addDeal = async (pt, data, res) => {
   if (data.length === 0) return new Promise.resolve();
   let productID;
@@ -47,7 +49,7 @@ const addDeal = async (pt, data, res) => {
     res.status(500).json({ message: 'error', body: err });
   }
 
-  const newDeal = {
+  let newDeal = {
     valid_from: new Date().toISOString(),
     is_available: true,
     offering_company: companyID,
@@ -57,6 +59,11 @@ const addDeal = async (pt, data, res) => {
     price: data.offer.price,
     url: data.offer.offer_page_url,
   };
+
+  // if (newDeal.deal_description) {
+  //   newDeal.deal_description = newDeal.deal_description;
+  //   // console.log(newDeal.deal_description);
+  // }
 
   const newDealImages = data.product_photos.map(async (url) => {
     const newImage = await fetch('http://localhost:3000/api/image', {
@@ -104,22 +111,21 @@ const doItForEachProduct = async (product, res) => {
   const name = product.name;
 
   const dataJSON = fs.readFileSync(`./JSON_Data/${name}.json`, 'utf-8');
-  const data = flatted.parse(dataJSON);
+  const data = JSON.parse(dataJSON);
+  // const data = flatted.parse(dataJSON);
 
-  const newDeals = [];
-
-  data.forEach(async (dt) => newDeals.push(addDeal(product, dt, res)));
-  return Promise.all(newDeals);
+  for (let i = 0; i < data.length; i++) {
+    console.log('Next Request✉️');
+    counter++;
+    await addDeal(product, data[i], res);
+  }
+  return Promise.resolve();
 };
 
 export default async function handler(req, res) {
-  const newDealsSuper = [];
-
-  for (let i = 0; i < 1; i++) {
-    newDealsSuper.push(doItForEachProduct(Products[i], res));
+  for (let i = 24; i < Products.length; i++) {
+    await doItForEachProduct(Products[i], res);
   }
 
-  await Promise.all(newDealsSuper);
-
-  res.status(200).json({ message: 'ok' });
+  res.status(200).json({ message: `ok! ${counter} deals inserted` });
 }
