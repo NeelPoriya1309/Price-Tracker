@@ -1,21 +1,12 @@
 import { server } from 'config/index';
 import Grid from '@mui/material/Grid';
-import Link from '@mui/material/Link';
-import Card from '@mui/material/Card';
-import Typography from '@mui/material/Typography';
-import CardHeader from '@mui/material/CardHeader';
-
-import TableStickyHeader from 'src/views/tables/TableStickyHeader';
 import CardMobile from 'src/views/cards/CardMobile';
 import axios from 'axios';
-import flatted from 'flatted';
 
 export const getStaticProps = async () => {
   const productReq = await axios.get(`${server}/api/product`);
 
   const productData = productReq.data.body;
-
-  console.log(productData);
 
   const imagesReq = productData.map(async (product) => {
     return axios.get(`${server}/api/image/${product.image}`);
@@ -35,8 +26,6 @@ export const getStaticProps = async () => {
     });
   }
 
-  console.log(finalProducts);
-
   return {
     props: {
       products: finalProducts,
@@ -45,7 +34,6 @@ export const getStaticProps = async () => {
 };
 
 const Product = ({ products }) => {
-  console.log(products);
   return (
     <>
       <Grid container spacing={6}>
