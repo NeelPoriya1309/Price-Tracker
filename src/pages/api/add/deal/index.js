@@ -111,8 +111,9 @@ const doItForEachProduct = async (product, res) => {
   const name = product.name;
 
   const dataJSON = fs.readFileSync(`./JSON_Data/${name}.json`, 'utf-8');
-  const data = JSON.parse(dataJSON);
-  // const data = flatted.parse(dataJSON);
+  // let data = JSON.parse(dataJSON).data;
+
+  const data = flatted.parse(dataJSON);
 
   for (let i = 0; i < data.length; i++) {
     console.log('Next Request✉️');
@@ -123,8 +124,12 @@ const doItForEachProduct = async (product, res) => {
 };
 
 export default async function handler(req, res) {
-  for (let i = 24; i < Products.length; i++) {
-    await doItForEachProduct(Products[i], res);
+  for (let i = 0; i < Products.length; i++) {
+    // console.log(Products[i].name);
+    if (Products[i].name === 'OnePlus 7T') {
+      console.log('Found it');
+      await doItForEachProduct(Products[i], res);
+    }
   }
 
   res.status(200).json({ message: `ok! ${counter} deals inserted` });
