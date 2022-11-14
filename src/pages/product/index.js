@@ -50,7 +50,7 @@ const Product = ({ products }) => {
     <>
       <Grid container spacing={6}>
         {products.map((product) => (
-          <Grid item xs={12} sm={6}>
+          <Grid key={product.id} item xs={12} sm={6}>
             <CardMobile product={product} />
           </Grid>
         ))}
