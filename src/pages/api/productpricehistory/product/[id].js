@@ -1,18 +1,19 @@
 import clientConfig from 'clientConfig';
 import { Client } from 'pg';
 
-const tableName = 'public.admin';
+const tableName = 'public.productpricehistory';
 
 export default async function handler(req, res) {
   const client = new Client(clientConfig);
   await client.connect();
   console.log('Connected🚀');
+
   const id = req.query.id;
 
   if (req.method === 'GET') {
     try {
       const data = await client.query(
-        `select * from ${tableName} where id='${id}'`
+        `select * from ${tableName} where product='${id}'`
       );
       await client.end();
       console.log('Disconnected🔒');
@@ -22,7 +23,7 @@ export default async function handler(req, res) {
       }
       res.status(200).json({
         message: 'ok',
-        body: data.rows[0],
+        body: data.rows,
       });
     } catch (err) {
       res.status(404).json({
@@ -77,7 +78,6 @@ export default async function handler(req, res) {
       );
       await client.end();
       console.log('Disconnected🔒');
-
       if (response.rowCount === 0) {
         res.status(404).json({
           message: 'Some error occured',

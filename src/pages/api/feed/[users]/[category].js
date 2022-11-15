@@ -1,8 +1,12 @@
-import client from '../../../../../Client';
+import clientConfig from 'clientConfig';
+import { Client } from 'pg';
 
 const tableName = 'public.feed';
 
 export default async function handler(req, res) {
+  const client = new Client(clientConfig);
+  await client.connect();
+  console.log('Connected🚀');
   const user_id = req.query.users;
   const category_id = req.query.category;
 
@@ -13,6 +17,8 @@ export default async function handler(req, res) {
       const data = await client.query(
         `select * from ${tableName} where users='${user_id}' and category='${category_id}'`
       );
+      await client.end();
+      console.log('Disconnected🔒');
       // console.log(data)
       if (data.rowCount === 0) {
         throw `No location with id=${id} found!💥`;
@@ -33,6 +39,8 @@ export default async function handler(req, res) {
       const response = await client.query(
         `delete from ${tableName} where users='${user_id}' and category='${category_id}'`
       );
+      await client.end();
+      console.log('Disconnected🔒');
 
       if (response.rowCount === 0) {
         res.status(404).json({

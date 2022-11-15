@@ -1,8 +1,12 @@
-import client from './../../../../Client';
+import clientConfig from 'clientConfig';
+import { Client } from 'pg';
 
 const tableName = 'public.category';
 
 export default async function handler(req, res) {
+  const client = new Client(clientConfig);
+  await client.connect();
+  console.log('Connected🚀');
   const id = req.query.id;
 
   if (req.method === 'GET') {
@@ -10,6 +14,8 @@ export default async function handler(req, res) {
       const data = await client.query(
         `select * from ${tableName} where id='${id}'`
       );
+      await client.end();
+      console.log('Disconnected🔒');
       // console.log(data)
       if (data.rowCount === 0) {
         throw `No location with id=${id} found!💥`;
@@ -44,6 +50,8 @@ export default async function handler(req, res) {
       const pgResponse = await client.query(
         `update ${tableName} set ${updatedLocation} where id='${id}'`
       );
+      await client.end();
+      console.log('Disconnected🔒');
       if (pgResponse.rowCount === 0) {
         res.status(404).json({
           message: 'Some error occured',
@@ -67,6 +75,8 @@ export default async function handler(req, res) {
       const response = await client.query(
         `delete from ${tableName} where id='${id}'`
       );
+      await client.end();
+      console.log('Disconnected🔒');
 
       if (response.rowCount === 0) {
         res.status(404).json({

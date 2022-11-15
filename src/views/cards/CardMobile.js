@@ -13,6 +13,7 @@ import IconButton from '@mui/material/IconButton';
 import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
 import Grid from '@mui/material/Grid';
+import Link from 'next/link';
 
 // ** Icons Imports
 import Twitter from 'mdi-material-ui/Twitter';
@@ -21,6 +22,7 @@ import Facebook from 'mdi-material-ui/Facebook';
 import Linkedin from 'mdi-material-ui/Linkedin';
 import GooglePlus from 'mdi-material-ui/GooglePlus';
 import ShareVariant from 'mdi-material-ui/ShareVariant';
+import { useRouter } from 'next/router';
 
 // Styled Grid component
 const StyledGrid = styled(Grid)(({ theme }) => ({
@@ -36,6 +38,7 @@ const StyledGrid = styled(Grid)(({ theme }) => ({
 }));
 
 const CardMobile = ({ product }) => {
+  const router = useRouter();
   // ** State
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
@@ -46,6 +49,13 @@ const CardMobile = ({ product }) => {
 
   const handleClose = () => {
     setAnchorEl(null);
+  };
+
+  const viewProduct = () => {
+    router.push({
+      pathname: `/product/${product.id}`,
+      query: { ...product },
+    });
   };
 
   return (
@@ -102,10 +112,16 @@ const CardMobile = ({ product }) => {
                 width: '100%',
               }}
             >
-              <Button>
-                <CartPlus fontSize="small" sx={{ marginRight: 2 }} />
-                View Deals
-              </Button>
+              <div>
+                <Button onClick={viewProduct}>
+                  <CartPlus
+                    fontSize="small"
+                    style={{ verticalAlign: 'middle' }}
+                    sx={{ marginRight: 2 }}
+                  />
+                  View
+                </Button>
+              </div>
               {/* <IconButton
                 id="long-button"
                 aria-label="share"
