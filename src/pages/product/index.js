@@ -6,36 +6,6 @@ import { useEffect, useState } from 'react';
 import { LoadingButton } from '@mui/lab';
 import { PackageVariant } from 'mdi-material-ui';
 
-// export const getStaticProps = async () => {
-//   const productReq = await axios.get(`${server}/api/product`);
-
-//   const productData = productReq.data.body;
-
-//   const imagesReq = productData.map(async (product) => {
-//     return axios.get(`${server}/api/image/${product.image}`);
-//   });
-
-//   const imagesData = await Promise.all(imagesReq);
-//   const images = imagesData.map((image) => image.data.body);
-
-//   const finalProducts = [];
-//   for (let i = 0; i < productData.length; i++) {
-//     finalProducts.push({
-//       id: productData[i].id,
-//       name: productData[i].name,
-//       description: productData[i].description,
-//       base_price: productData[i].base_price,
-//       image: images[i].image_url,
-//     });
-//   }
-
-//   return {
-//     props: {
-//       products: finalProducts,
-//     },
-//   };
-// };
-
 const Product = () => {
   const [products, setProducts] = useState(undefined);
 
@@ -47,7 +17,7 @@ const Product = () => {
         return axios.get(`${server}/api/image/${product.image}`);
       });
 
-      const imagesData = Promise.all(imagesReq).then((res) => {
+      Promise.all(imagesReq).then((res) => {
         const images = res.map((image) => image.data.body);
 
         const finalProducts = [];
@@ -58,6 +28,7 @@ const Product = () => {
             description: productData[i].description,
             base_price: productData[i].base_price,
             image: images[i].image_url,
+            url: productData[i].url,
           });
         }
 

@@ -1,5 +1,5 @@
 // ** React Imports
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 // ** MUI Imports
 import Box from '@mui/material/Box';
@@ -13,18 +13,28 @@ import CardContent from '@mui/material/CardContent';
 // ** Icons Imports
 import { useRouter } from 'next/router';
 import { server } from 'config/index';
+import AccountOutline from 'mdi-material-ui/AccountOutline';
+import InputAdornment from '@mui/material/InputAdornment';
 
-const FormLayoutsBasic = () => {
+const FormLayoutsBasic = ({ currentProduct }) => {
   const router = useRouter();
+
+  console.log(currentProduct);
 
   const [values, setValues] = useState({
     name: '',
-    description: '',
     base_price: '',
+    description: '',
+    image: '',
     category: '',
     company: '',
-    image: '',
+    id: '',
   });
+
+  useEffect(() => {
+    if (currentProduct === undefined) return;
+    setValues({ ...currentProduct });
+  }, [currentProduct]);
 
   const addProduct = async () => {
     //checking if all fields are filled
@@ -130,7 +140,7 @@ const FormLayoutsBasic = () => {
     <>
       <Card>
         <CardHeader
-          title="Add Product Details Form"
+          title="Update Product Details Form"
           titleTypographyProps={{ variant: 'h6' }}
         />
         <CardContent>
@@ -145,6 +155,11 @@ const FormLayoutsBasic = () => {
                   onChange={(e) =>
                     setValues({ ...values, name: e.target.value })
                   }
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start"></InputAdornment>
+                    ),
+                  }}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -157,6 +172,11 @@ const FormLayoutsBasic = () => {
                   onChange={(e) =>
                     setValues({ ...values, description: e.target.value })
                   }
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start"></InputAdornment>
+                    ),
+                  }}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -168,6 +188,11 @@ const FormLayoutsBasic = () => {
                   onChange={(e) =>
                     setValues({ ...values, base_price: e.target.value })
                   }
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start"></InputAdornment>
+                    ),
+                  }}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -179,6 +204,11 @@ const FormLayoutsBasic = () => {
                   onChange={(e) =>
                     setValues({ ...values, category: e.target.value })
                   }
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start"></InputAdornment>
+                    ),
+                  }}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -190,6 +220,11 @@ const FormLayoutsBasic = () => {
                   onChange={(e) =>
                     setValues({ ...values, company: e.target.value })
                   }
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start"></InputAdornment>
+                    ),
+                  }}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -201,6 +236,11 @@ const FormLayoutsBasic = () => {
                   onChange={(e) =>
                     setValues({ ...values, image: e.target.value })
                   }
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start"></InputAdornment>
+                    ),
+                  }}
                 />
               </Grid>
               <Grid item xs={12}>

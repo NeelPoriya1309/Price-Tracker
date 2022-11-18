@@ -9,18 +9,35 @@ import CreditCardOutline from 'mdi-material-ui/CreditCardOutline';
 import AccountPlusOutline from 'mdi-material-ui/AccountPlusOutline';
 import AlertCircleOutline from 'mdi-material-ui/AlertCircleOutline';
 import GoogleCirclesExtended from 'mdi-material-ui/GoogleCirclesExtended';
+import {
+  CogBox,
+  PackageVariant,
+  Pencil,
+  Plus,
+  TableAccount,
+} from 'mdi-material-ui';
 
 const navigation = () => {
   return [
     {
-      title: 'Dashboard',
-      icon: HomeOutline,
-      path: '/',
+      title: 'Show Products',
+      icon: PackageVariant,
+      path: '/product',
     },
     {
-      title: 'Products',
-      icon: HomeOutline,
-      path: '/product',
+      title: 'Add Product',
+      icon: Plus,
+      path: '/product/add',
+    },
+    {
+      title: 'Show Tables',
+      icon: TableAccount,
+      path: '/table',
+    },
+    {
+      title: 'Update Product',
+      icon: Pencil,
+      path: '/product/update',
     },
     // {
     //   title: 'Account Settings',

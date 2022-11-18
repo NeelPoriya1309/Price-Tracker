@@ -6,6 +6,7 @@ import axios from 'axios';
 
 import { LoadingButton } from '@mui/lab';
 import dynamic from 'next/dynamic';
+import Link from 'next/link';
 const ApexCharts = dynamic(() => import('react-apexcharts'), { ssr: false });
 
 export default function Example() {
