@@ -25,20 +25,25 @@ const navigation = () => {
       path: '/product',
     },
     {
-      title: 'Add Product',
-      icon: Plus,
-      path: '/product/add',
-    },
-    {
       title: 'Show Tables',
       icon: TableAccount,
       path: '/table',
+    },
+    {
+      title: 'Add Product',
+      icon: Plus,
+      path: '/product/add',
     },
     {
       title: 'Update Product',
       icon: Pencil,
       path: '/product/update',
     },
+    // {
+    //   title: 'Testing',
+    //   icon: Pencil,
+    //   path: '/testing',
+    // },
     // {
     //   title: 'Account Settings',
     //   icon: AccountCogOutline,

@@ -33,16 +33,20 @@ const Home = () => {
   const [currentProduct, setCurrentProduct] = useState('');
 
   useEffect(() => {
-    fetch(`${server}/api/product`)
+    fetch(`${server}/api/product/help`)
       .then((res) => res.json())
       .then((data) => {
+        // console.log('Items fetched');
+        // console.log(data.body);
         setProducts(data.body);
       });
+
+    // console.log('Hello');
   }, []);
 
   const handleChange = (event) => {
     setCurrentProduct(event.target.value);
-    console.log(event.target.value);
+    // console.log(event.target.value);
   };
 
   return (

@@ -1,5 +1,7 @@
+import { server } from 'config/index.js';
 import clientConfig from 'clientConfig';
 import { Client } from 'pg';
+const crypto = require('crypto');
 
 const tableName = 'public.product';
 
@@ -40,35 +42,56 @@ export default async function handler(req, res) {
       return;
     }
 
-    try {
-      const updatedLocation = Object.entries(req.body)
-        .map(([key, value]) => {
-          return `${key}='${value}'`;
-        })
-        .join(', ');
+    const product = req.body;
+    //do the image_url first
+    await client.query(
+      `update image set image_url='${product.image_url}' where id='${product.image_id}'`
+    );
 
-      const pgResponse = await client.query(
-        `update ${tableName} set ${updatedLocation} where id='${id}'`
+    //update company of the product
+    const companyDetails = await client.query(
+      `select * from company where name='${product.company_name}'`
+    );
+    if (companyDetails.rowCount === 0) {
+      const newCompanyID = crypto.randomBytes(16).toString('hex');
+      await client.query(
+        `insert into company (id, name) values ('${newCompanyID}', '${product.company_name}')`
       );
-      await client.end();
-      console.log('Disconnected🔒');
-      if (pgResponse.rowCount === 0) {
-        res.status(404).json({
-          message: 'Some error occured',
-          body: `No tuple present with id=${id}💥`,
-        });
-        return;
-      }
-      res.status(200).json({
-        message: 'ok',
-        body: 'Tuple updated successfully',
-      });
-    } catch (err) {
-      res.status(404).json({
-        message: 'Some error occured',
-        error: err,
-      });
+
+      await client.query(
+        `update product set company='${newCompanyID}' where id='${product.id}'`
+      );
+    } else {
+      await client.query(
+        `update product set company='${companyDetails.rows[0].id}' where id='${product.id}'`
+      );
     }
+
+    //update category of the product
+    const categoryDeatils = await client.query(
+      `select * from category where name='${product.category_name}'`
+    );
+    if (categoryDeatils.rowCount === 0) {
+      const newCategoryID = crypto.randomBytes(16).toString('hex');
+      await client.query(
+        `insert into category (id, name) values ('${newCategoryID}', '${product.category_name}')`
+      );
+
+      await client.query(
+        `update product set category='${newCategoryID}' where id='${product.id}'`
+      );
+    } else {
+      await client.query(
+        `update product set category='${categoryDeatils.rows[0].id}' where id='${product.id}'`
+      );
+    }
+
+    await client.query(
+      `update product set name='${product.name}', description='${product.description}', base_price='${product.base_price}' where id='${product.id}'`
+    );
+
+    client.end();
+    res.status(200).json({ message: 'received something' });
     return;
   } else if (req.method === 'DELETE') {
     try {

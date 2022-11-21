@@ -19,16 +19,17 @@ import InputAdornment from '@mui/material/InputAdornment';
 const FormLayoutsBasic = ({ currentProduct }) => {
   const router = useRouter();
 
-  console.log(currentProduct);
-
   const [values, setValues] = useState({
     name: '',
     base_price: '',
     description: '',
-    image: '',
-    category: '',
-    company: '',
+    image_url: '',
+    category_name: '',
+    company_name: '',
     id: '',
+    company_id: '',
+    category_id: '',
+    image_id: '',
   });
 
   useEffect(() => {
@@ -36,104 +37,30 @@ const FormLayoutsBasic = ({ currentProduct }) => {
     setValues({ ...currentProduct });
   }, [currentProduct]);
 
-  const addProduct = async () => {
+  const updateProduct = async () => {
     //checking if all fields are filled
     if (
       values.name === '' ||
       values.description === '' ||
       values.base_price === '' ||
-      values.category === '' ||
-      values.company === '' ||
-      values.image === ''
+      values.category_name === '' ||
+      values.company_name === '' ||
+      values.image_url === ''
     ) {
       alert('Please fill all fields');
       return;
     }
 
-    //checking if base_price is a number
-    if (isNaN(values.base_price.slice(1))) {
-      alert('Please enter a valid number for base price');
-      return;
-    }
-
-    let query = await fetch(`${server}/api/company`);
-    let companies = await query.json();
-
-    let company_id = companies.body.find(
-      (company) => company.name === values.company
-    );
-
-    if (company_id) {
-      company_id = company_id.id;
-    } else {
-      const request = await fetch(`${server}/api/company`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          name: values.company,
-        }),
-      });
-      const response = await request.json();
-      company_id = response.body.id;
-    }
-
-    query = await fetch(`${server}/api/category`);
-    let categories = await query.json();
-
-    let category_id = categories.body.find(
-      (category) => category.name === values.category
-    );
-
-    if (category_id) {
-      category_id = category_id.id;
-    } else {
-      const request = await fetch(`${server}/api/category`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          name: values.category,
-        }),
-      });
-      const response = await request.json();
-      category_id = response.body.id;
-    }
-
-    const newProduct = {
-      ...values,
-      company: company_id,
-      category: category_id,
-    };
-
-    console.log(newProduct);
-
-    const response = await fetch(`${server}/api/product`, {
-      method: 'POST',
+    await fetch(`${server}/api/product/${values.id}`, {
+      method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(newProduct),
+      body: JSON.stringify(values),
     });
 
-    const data = await response.json();
-
-    console.log(data);
-
-    const newProdID = data.body.id;
-    await fetch(`${server}/api/productpricehistory/product/${newProdID}`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        base_price: '₹' + values.base_price,
-      }),
-    });
-    router.push('/product');
-    alert('Product Inserted Successfully!');
+    alert('Product Updated🚀');
+    window.location.reload();
   };
 
   return (
@@ -200,9 +127,9 @@ const FormLayoutsBasic = ({ currentProduct }) => {
                   fullWidth
                   label="Category"
                   placeholder="Smart Phone"
-                  value={values.category}
+                  value={values.category_name}
                   onChange={(e) =>
-                    setValues({ ...values, category: e.target.value })
+                    setValues({ ...values, category_name: e.target.value })
                   }
                   InputProps={{
                     startAdornment: (
@@ -216,9 +143,9 @@ const FormLayoutsBasic = ({ currentProduct }) => {
                   fullWidth
                   label="Company"
                   placeholder="Vadilal"
-                  value={values.company}
+                  value={values.company_name}
                   onChange={(e) =>
-                    setValues({ ...values, company: e.target.value })
+                    setValues({ ...values, company_name: e.target.value })
                   }
                   InputProps={{
                     startAdornment: (
@@ -232,9 +159,9 @@ const FormLayoutsBasic = ({ currentProduct }) => {
                   fullWidth
                   label="Image URL"
                   placeholder="https://picsum.photos/1920/1080"
-                  value={values.image}
+                  value={values.image_url}
                   onChange={(e) =>
-                    setValues({ ...values, image: e.target.value })
+                    setValues({ ...values, image_url: e.target.value })
                   }
                   InputProps={{
                     startAdornment: (
@@ -254,7 +181,7 @@ const FormLayoutsBasic = ({ currentProduct }) => {
                   }}
                 >
                   <Button
-                    onClick={addProduct}
+                    onClick={updateProduct}
                     type="submit"
                     variant="contained"
                     size="large"
