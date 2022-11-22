@@ -98,9 +98,6 @@ export default function Example() {
               <h2>description</h2>
               <p>{product.description}</p>
             </div>
-            <div className={styles['purchase-info']}>
-              <Button>Check Deals</Button>
-            </div>
           </div>
         </div>
       </div>

@@ -110,7 +110,7 @@ const FormLayoutsBasic = ({ currentProduct }) => {
                 <TextField
                   fullWidth
                   label="Base Price"
-                  placeholder="$99,900"
+                  placeholder="100000"
                   value={values.base_price}
                   onChange={(e) =>
                     setValues({ ...values, base_price: e.target.value })
@@ -142,7 +142,7 @@ const FormLayoutsBasic = ({ currentProduct }) => {
                 <TextField
                   fullWidth
                   label="Company"
-                  placeholder="Vadilal"
+                  placeholder="Apple"
                   value={values.company_name}
                   onChange={(e) =>
                     setValues({ ...values, company_name: e.target.value })
@@ -186,7 +186,7 @@ const FormLayoutsBasic = ({ currentProduct }) => {
                     variant="contained"
                     size="large"
                   >
-                    Add
+                    Update
                   </Button>
                 </Box>
               </Grid>

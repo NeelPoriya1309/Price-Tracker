@@ -1,0 +1,37 @@
+Folder PATH listing for volume Main
+Volume serial number is 3CA7-C097
+D:\DEVELOPMENT\FRONT-END\PRICE-TRACKER\SRC\PAGES\API
+├───add
+│   ├───admin
+│   ├───deal
+│   ├───dealhistory
+│   ├───favourite
+│   ├───feed
+│   ├───feedback
+│   ├───history
+│   ├───location
+│   ├───product
+│   ├───productpricehistory
+│   ├───save-json
+│   └───user
+├───admin
+├───category
+├───company
+├───deal
+├───dealhistory
+├───dealimages
+├───favourites
+│   └───[users]
+├───feed
+│   └───[users]
+├───feedback
+├───history
+├───image
+├───location
+├───names
+├───notification
+├───product
+├───productpricehistory
+│   └───product
+├───test
+└───user
