@@ -11,6 +11,10 @@ import AlertCircleOutline from 'mdi-material-ui/AlertCircleOutline';
 import GoogleCirclesExtended from 'mdi-material-ui/GoogleCirclesExtended';
 import {
   CogBox,
+  Delete,
+  DeleteCircleOutline,
+  DeleteEmpty,
+  DeleteVariant,
   PackageVariant,
   Pencil,
   Plus,
@@ -38,6 +42,11 @@ const navigation = () => {
       title: 'Update Product',
       icon: Pencil,
       path: '/product/update',
+    },
+    {
+      title: 'Delete Product',
+      icon: Delete,
+      path: '/product/delete',
     },
     // {
     //   title: 'Testing',
